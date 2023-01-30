@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 import { Member, Squad } from '../_model/squad.model';
 
-const API_URL = 'http://localhost:3001/api/squad/';
+const API_URL = 'https://nodejs-app-1xon.onrender.com/api/squad/';
 
 @Injectable({
   providedIn: 'root',
