@@ -4,7 +4,7 @@ const cookieSession = require("cookie-session");
 
 const dbConfig = require("./app/config/db.config");
 
-require('dotenv').config({ path: 'ENV_FILENAME' });
+require('dotenv').config({ path: '.env' });
 
 const app = express();
 
@@ -19,6 +19,7 @@ var corsOptions = {
   allowedHeaders: [
     'Content-Type',
   ],
+  preflightContinue: true,
   credentials: true
 }
 app.use(cors(corsOptions));
@@ -33,7 +34,8 @@ app.use(
   cookieSession({
     name: "bezkoder-session",
     secret: "COOKIE_SECRET", // should use as secret environment variable
-    httpOnly: true
+    httpOnly: true,
+    sameSite: "none"
   })
 );
 
