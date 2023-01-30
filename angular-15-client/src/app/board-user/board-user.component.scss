@@ -1,0 +1,28 @@
+.role {
+  font-weight: 400;
+  text-align: center;
+  color: #fff;
+
+  &--POR {
+    background-color: #f8ab29;
+    border-color: #f8ab29;
+  }
+  &--DIF {
+    background-color: #63c623;
+    border-color: #63c623;
+  }
+  &--CEN {
+    background-color: #2e6be6;
+    border-color: #2e6be6;
+  }
+  &--ATT {
+    background-color: #f21a3c;
+    border-color: #f21a3c;
+  }
+}
+
+.mat-mdc-row {
+  &.highlighted {
+    background: #999;
+  }
+}
