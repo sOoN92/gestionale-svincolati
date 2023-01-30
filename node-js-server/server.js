@@ -35,6 +35,7 @@ app.use(
     name: "bezkoder-session",
     secret: "COOKIE_SECRET", // should use as secret environment variable
     httpOnly: true,
+    secure: true,
     sameSite: "none"
   })
 );
