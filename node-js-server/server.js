@@ -29,7 +29,7 @@ app.use(express.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
-
+app.enable('trust proxy')
 app.use(
   cookieSession({
     name: "bezkoder-session",
