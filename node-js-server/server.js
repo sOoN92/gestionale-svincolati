@@ -4,9 +4,7 @@ const cookieSession = require("cookie-session");
 
 const dbConfig = require("./app/config/db.config");
 
-if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config();
-}
+require('dotenv').config({ path: 'ENV_FILENAME' });
 
 const app = express();
 
