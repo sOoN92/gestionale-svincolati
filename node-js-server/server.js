@@ -9,7 +9,7 @@ require('dotenv').config({ path: 'ENV_FILENAME' });
 const app = express();
 
 var corsOptions = {
-  origin: '*',
+  origin: 'https://dreamy-fenglisu-c87138.netlify.app/*',
 
   methods: [
     'GET',
