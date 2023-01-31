@@ -1,33 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../_services/user.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { ReleasedService } from '../_services/released.service';
 
 @Component({
   selector: 'app-board-admin',
   templateUrl: './board-admin.component.html',
-  styleUrls: ['./board-admin.component.css']
+  styleUrls: ['./board-admin.component.scss']
 })
 export class BoardAdminComponent implements OnInit {
   content?: string;
+  displayedColumns: string[] = ['role', 'name', 'team', 'fantaPoint'];
+  dataSource = new MatTableDataSource<{_id:string, role: string, name: string; team: string; fantaPoint: string}>();
 
-  constructor(private userService: UserService) { }
+  constructor(private releasedService: ReleasedService) { }
 
   ngOnInit(): void {
-    this.userService.getAdminBoard().subscribe({
-      next: data => {
-        this.content = data;
-      },
-      error: err => {
-        if (err.error) {
-          try {
-            const res = JSON.parse(err.error);
-            this.content = res.message;
-          } catch {
-            this.content = `Error with status: ${err.status} - ${err.statusText}`;
-          }
-        } else {
-          this.content = `Error with status: ${err.status}`;
-        }
-      }
+    this.releasedService.getReleased().subscribe((released) => {
+      this.dataSource.data = released;
     });
   }
 }

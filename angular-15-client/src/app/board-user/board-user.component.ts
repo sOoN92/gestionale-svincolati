@@ -14,6 +14,8 @@ import { StorageService } from '../_services/storage.service';
 export class BoardUserComponent implements OnInit {
   displayedColumns: string[] = ['role', 'name', 'team', 'price', 'release'];
   dataSource = new MatTableDataSource<Member>();
+  dataSourceReleased = new MatTableDataSource<Member>();
+
   initialSelection = [];
   allowMultiSelect = false;
   selection = new SelectionModel<Member>(
@@ -30,6 +32,7 @@ export class BoardUserComponent implements OnInit {
     this.squadService.getSquad().subscribe((squad) => {
       this.content = squad;
       this.dataSource.data = squad.members.filter(x => !x.released);
+      this.dataSourceReleased.data = squad.members.filter(x => x.released);
     });
   }
 
@@ -43,6 +46,7 @@ export class BoardUserComponent implements OnInit {
       this.squadService.releaseMember({id: player._id, credits: player.recoveredCredits}).subscribe((squad: Squad) => {
         this.content = squad;
         this.dataSource.data = squad.members.filter((x: Member) => !x.released);
+        this.dataSourceReleased.data = squad.members.filter(x => x.released);
       });
     }
   }
