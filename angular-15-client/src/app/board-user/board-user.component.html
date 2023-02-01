@@ -2,87 +2,114 @@
   <header class="jumbotron">
     <ng-container *ngIf="content">
       <strong>Seleziona un giocatore alla volta e premi svincola.</strong>
-      <br/><br/>
-      <button mat-raised-button color="primary" (click)="releasePlayer()" [disabled]="content.maxSquadRelease === 0">Svincola</button>
-      <br/><br/>
+      <br /><br />
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="releasePlayer()"
+        [disabled]="content.maxSquadRelease === 0"
+      >
+        Svincola
+      </button>
+      <br /><br />
       <p>
-        Numero massimo di svincoli: <strong>{{ content.maxSquadRelease }}</strong>
+        Numero massimo di svincoli:
+        <strong>{{ content.maxSquadRelease }}</strong>
       </p>
       <p>
         Numero di crediti: <strong>{{ content.totalCredits }}</strong>
-      </p>      
+      </p>
     </ng-container>
   </header>
   <section>
     <h2>Squadra</h2>
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <mat-table
+      matTableResponsive
+      [dataSource]="dataSource"
+      class="mat-elevation-z8"
+    >
       <ng-container matColumnDef="role">
-        <th mat-header-cell *matHeaderCellDef> Ruolo </th>
-        <td mat-cell *matCellDef="let element" class="role"
-        [ngClass]="element.role ? 'role--' + element.role : ''"> {{element.role | firstWord }} </td>
+        <mat-header-cell *matHeaderCellDef> Ruolo </mat-header-cell>
+        <mat-cell
+          *matCellDef="let element"
+          class="role"
+          [ngClass]="element.role ? 'role--' + element.role : ''"
+        >
+          {{ element.role | firstWord }}
+        </mat-cell>
       </ng-container>
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Nome </th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="team">
-        <th mat-header-cell *matHeaderCellDef> Squadra </th>
-        <td mat-cell *matCellDef="let element"> {{element.team}} </td>
+        <mat-header-cell *matHeaderCellDef> Squadra </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.team }} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="price">
-        <th mat-header-cell *matHeaderCellDef> Prezzo </th>
-        <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+        <mat-header-cell *matHeaderCellDef> Prezzo </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.price }} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="release">
-        <th mat-header-cell *matHeaderCellDef> Prezzo svincolo </th>
-        <td mat-cell *matCellDef="let element"> {{element.recoveredCredits}} </td>
+        <mat-header-cell *matHeaderCellDef> Prezzo svincolo </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{ element.recoveredCredits }}
+        </mat-cell>
       </ng-container>
-    
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr
-        mat-row
-        *matRowDef="let row; columns: displayedColumns;"
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row
+        *matRowDef="let row; columns: displayedColumns"
         (click)="select(row)"
-        [ngClass]="{hovered: row.hovered, highlighted: selection.isSelected(row)}"
+        [ngClass]="{
+          hovered: row.hovered,
+          highlighted: selection.isSelected(row)
+        }"
         (mouseover)="row.hovered = true"
         (mouseout)="row.hovered = false"
-      ></tr>
-    </table>
+      ></mat-row>
+    </mat-table>
   </section>
   <section>
-  <h2>Svincolati</h2>
-    <table mat-table [dataSource]="dataSourceReleased" class="mat-elevation-z8">
+    <h2>Svincolati</h2>
+    <mat-table
+      matTableResponsive
+      [dataSource]="dataSourceReleased"
+      class="mat-elevation-z8"
+    >
       <ng-container matColumnDef="role">
-        <th mat-header-cell *matHeaderCellDef> Ruolo </th>
-        <td mat-cell *matCellDef="let element" class="role"
-        [ngClass]="element.role ? 'role--' + element.role : ''"> {{element.role | firstWord }} </td>
+        <mat-header-cell *matHeaderCellDef> Ruolo </mat-header-cell>
+        <mat-cell
+          *matCellDef="let element"
+          class="role"
+          [ngClass]="element.role ? 'role--' + element.role : ''"
+        >
+          {{ element.role | firstWord }}
+        </mat-cell>
       </ng-container>
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Nome </th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="team">
-        <th mat-header-cell *matHeaderCellDef> Squadra </th>
-        <td mat-cell *matCellDef="let element"> {{element.team}} </td>
+        <mat-header-cell *matHeaderCellDef> Squadra </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.team }} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="price">
-        <th mat-header-cell *matHeaderCellDef> Prezzo </th>
-        <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+        <mat-header-cell *matHeaderCellDef> Prezzo </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.price }} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="release">
-        <th mat-header-cell *matHeaderCellDef> Prezzo svincolo </th>
-        <td mat-cell *matCellDef="let element"> {{element.recoveredCredits}} </td>
+        <mat-header-cell *matHeaderCellDef> Prezzo svincolo </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{ element.recoveredCredits }}
+        </mat-cell>
       </ng-container>
-    
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr
-        mat-row
-        *matRowDef="let row; columns: displayedColumns;"
-      ></tr>
-    </table>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
   </section>
 </div>
 
-<ng-template #loggedOut>
-  Please login.
-</ng-template>
+<ng-template #loggedOut> Please login. </ng-template>
