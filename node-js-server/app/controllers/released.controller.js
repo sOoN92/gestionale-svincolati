@@ -6,12 +6,12 @@ exports.getReleased = async (req, res) => {
   let members = await Squad.find(
     { "members.released": true }
   );
-  let filtered;
   const released = await Released.find({});
 
   if (members.length) {
-    filtered = members[0].members.filter(x => x.released);
-    members[0].members = filtered;
+    members.forEach(member => {
+      member = members.filter(x => x.released);
+    })
   }
 
   const mergedData = await Promise.all([members, released]).then(
