@@ -10,7 +10,7 @@ exports.getReleased = async (req, res) => {
 
   if (members.length) {
     members.forEach(member => {
-      member = members.filter(x => x.released);
+      member.members = member.members.filter(x => x.released);
     })
   }
 
