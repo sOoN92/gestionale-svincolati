@@ -15,6 +15,8 @@ import { BoardUserComponent } from './board-user/board-user.component';
 import { httpInterceptorProviders } from './_helpers/http.interceptor';
 import { FirstWordPipe } from './_shared/first-word.pipe';
 import { MaterialModule } from './_shared/material.module';
+import { GetUsernameById } from './_shared/username-by-id.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +26,7 @@ import { MaterialModule } from './_shared/material.module';
     BoardModeratorComponent,
     BoardUserComponent,
     FirstWordPipe,
+    GetUsernameById,
   ],
   imports: [
     BrowserModule,

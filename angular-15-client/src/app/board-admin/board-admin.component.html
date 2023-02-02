@@ -1,13 +1,12 @@
 <div class="container">
   <section>
     <h2>Squadre</h2>
-    <mat-table
-      [dataSource]="members"
-      class="mat-elevation-z8"
-    >
+    <mat-table [dataSource]="members" class="mat-elevation-z8">
       <ng-container matColumnDef="userId">
         <mat-header-cell *matHeaderCellDef> Utente </mat-header-cell>
-        <mat-cell *matCellDef="let element">{{ element.userId }}</mat-cell>
+        <mat-cell *matCellDef="let element">{{
+          element.userId | getUsernameById | async
+        }}</mat-cell>
       </ng-container>
       <ng-container matColumnDef="totalCredits">
         <mat-header-cell *matHeaderCellDef> Crediti resuidi </mat-header-cell>
@@ -18,7 +17,9 @@
       <ng-container matColumnDef="missing">
         <mat-header-cell *matHeaderCellDef> Mancanti </mat-header-cell>
         <mat-cell *matCellDef="let element">
-          {{ element.missing | json }}
+          <ng-container *ngFor="let column of element.missing | keyvalue">
+            {{column.key}}: {{ column.value }}
+          </ng-container>
         </mat-cell>
       </ng-container>
       <mat-header-row *matHeaderRowDef="displayedTeamColumns"></mat-header-row>
@@ -28,10 +29,7 @@
 
   <section>
     <h2>Svincolati</h2>
-    <mat-table
-      [dataSource]="dataSource"
-      class="mat-elevation-z8"
-    >
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
       <ng-container matColumnDef="role">
         <mat-header-cell *matHeaderCellDef> Ruolo </mat-header-cell>
         <mat-cell

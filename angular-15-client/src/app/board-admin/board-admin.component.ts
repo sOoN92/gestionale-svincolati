@@ -35,4 +35,5 @@ export class BoardAdminComponent implements OnInit {
       })
     ).subscribe();
   }
+  
 }
