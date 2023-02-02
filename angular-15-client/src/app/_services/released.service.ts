@@ -29,7 +29,7 @@ export class ReleasedService {
         if (released.length) {
           released = released.filter((x: any) => !x.name.includes('*'));
         }
-        const members = res?.members?.flatMap((x: any) => x.members) || [];
+        const members = res?.members?.flatMap((x: any) => x.members)?.filter((x: any) => !x.name.includes('*')) || [];
 
         const result = [...released, ...members];
 
