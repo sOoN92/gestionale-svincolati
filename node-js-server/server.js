@@ -7,6 +7,7 @@ const dbConfig = require("./app/config/db.config");
 require('dotenv').config({ path: '.env' });
 
 const app = express();
+// origin: 'https://dreamy-fenglisu-c87138.netlify.app',
 
 var corsOptions = {
   origin: 'https://dreamy-fenglisu-c87138.netlify.app',

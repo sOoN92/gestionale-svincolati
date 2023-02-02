@@ -12,6 +12,8 @@ module.exports = function(app) {
 
   app.get("/api/test/all", controller.allAccess);
 
+  app.post("/api/test/getById", [authJwt.verifyToken, authJwt.isAdmin], controller.getUserById)
+
   app.get("/api/test/user", [authJwt.verifyToken], controller.userBoard);
 
   app.get(
